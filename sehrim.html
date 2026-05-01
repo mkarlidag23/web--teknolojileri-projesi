@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şehrim | Elazığ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Proje Ödevi</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="sehrim.html">Şehrim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Takımımız</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-2" href="login.html">Giriş Yap</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+        <h1 class="text-center mb-4 text-danger">Gakgoşlar Diyarı: Elazığ</h1>
+        
+        <div class="row bg-white p-4 rounded shadow-sm mb-5 border">
+            <div class="col-md-12">
+                <h3>Genel Bilgiler</h3>
+                <p>Doğu Anadolu Bölgesi'nin en köklü şehirlerinden biri olan Elazığ, tarihi Harput yerleşkesi etrafında şekillenmiştir. Yaklaşık 600.000 nüfusa sahip olan şehir, kültürel zenginlikleri, eşsiz mutfağı ve doğal güzellikleriyle dikkat çeker.</p>
+                
+                <h4 class="mt-4">Gezilecek Başlıca Yerler</h4>
+                <ul>
+                    <li><strong>Harput Kalesi:</strong> Urartular dönemine kadar uzanan, "Süt Kalesi" olarak da bilinen tarihi yapı.</li>
+                    <li><strong>Palu Kalesi:</strong> Murat Nehri kıyısında, sarp kayalıklar üzerine kurulu muazzam bir tarih mirası.</li>
+                    <li><strong>Hazar Gölü:</strong> Bölgenin "gizli denizi" olan, harika manzaralara sahip tektonik göl.</li>
+                    <li><strong>Keban Barajı:</strong> Türkiye'nin enerji üretimindeki devasa yapılarından biri.</li>
+                    <li><strong>Çırçır Şelalesi:</strong> Taze alabalık yiyebileceğiniz, doğayla iç içe bir dinlenme noktası.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="text-center mb-4">Elazığ Galerisi (Tıklanabilir)</h3>
+        
+        <div class="slider-container border">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Harput_Castle_in_Elazig%2C_Turkey.jpg" class="slider-img active" alt="Harput Kalesi" onclick="alert('Harput Kalesi - Tarihin kalbi burada atıyor.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Palu_Castle.jpg" class="slider-img" alt="Palu Kalesi" onclick="alert('Palu Kalesi - Murat Nehri manzaralı eşsiz bir kale.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Hazar_G%C3%B6l%C3%BC.jpg" class="slider-img" alt="Hazar Gölü" onclick="alert('Hazar Gölü - Elazığ\'ın tatil cenneti.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Keban_Dam.jpg" class="slider-img" alt="Keban Barajı" onclick="alert('Keban Barajı - Mühendislik harikası.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Elaz%C4%B1%C4%9F_Ulu_Camii_1.jpg/800px-Elaz%C4%B1%C4%9F_Ulu_Camii_1.jpg" class="slider-img" alt="Ulu Camii" onclick="alert('Harput Ulu Camii - Eğik minaresiyle meşhur tarihi yapı.')">
+            
+            <button class="slider-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="slider-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slider-img");
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add("active");
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
