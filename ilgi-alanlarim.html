@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlgi Alanlarım | Film API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Proje Ödevi</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="takimimiz.html">Takımımız</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Popüler Filmler</h1>
+            <p class="lead">Bu sayfa harici bir API kullanılarak dinamik olarak güncellenmektedir.</p>
+        </header>
+
+        <div id="movie-container" class="row">
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Yükleniyor...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Ücretsiz Film API'sinden veri çekme
+        async function fetchMovies() {
+            const container = document.getElementById('movie-container');
+            try {
+                // Örnek bir film listesi API'si (The Movie Database benzeri yapı)
+                const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=50a58064d17f9d501255e2d63f0d2c00&language=tr-TR&page=1');
+                const data = await response.json();
+                
+                container.innerHTML = ''; // Spinner'ı temizle
+
+                data.results.slice(0, 8).forEach(movie => {
+                    const movieCard = `
+                        <div class="col-md-3 mb-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top" alt="${movie.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${movie.title}</h5>
+                                    <p class="card-text text-muted small">${movie.release_date}</p>
+                                    <span class="badge bg-warning text-dark">Puan: ${movie.vote_average}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += movieCard;
+                });
+            } catch (error) {
+                container.innerHTML = '<div class="alert alert-danger">API verisi yüklenirken bir hata oluştu!</div>';
+            }
+        }
+
+        fetchMovies();
+    </script>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">&copy; 2026 Muhammet Şahin Karlıdağ</p>
+    </footer>
+</body>
+</html>
