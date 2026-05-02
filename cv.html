@@ -7,19 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Proje Ödevi</a>
-            <div class="collapse navbar-collapse">
+            <a class="navbar-brand fw-bold" href="index.html">Proje Ödevi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
                     <li class="nav-item"><a class="nav-link active" href="cv.html">Özgeçmiş</a></li>
                     <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Takımımız</a></li>
-                    <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
-                    <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-2" href="login.html">Giriş Yap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Takımımız</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary btn-sm text-white ms-lg-2" href="#">Giriş Yap</a></li>
                 </ul>
             </div>
         </div>
@@ -27,41 +30,33 @@
 
     <main class="container mt-5">
         <header class="text-center mb-5 border-bottom pb-4">
-            <h1 class="display-5 fw-bold">Muhammet Şahin Karlıdağ</h1>
-            <p class="text-muted fs-4">Bilgisayar Mühendisliği Öğrencisi</p>
+            <h1 class="display-5 fw-bold text-dark">Muhammet Şahin Karlıdağ</h1>
+            <p class="text-muted fs-4">Bilgisayar Mühendisliği Öğrencisi | Sakarya Üniversitesi</p>
         </header>
 
         <section class="row mb-5">
             <div class="col-md-12">
-                <h3 class="border-bottom pb-2 mb-3">Eğitim Bilgileri</h3>
-                
-                <article class="card p-4 shadow-sm border-0 bg-white mb-3">
-                    <h4 class="text-primary">Sakarya Üniversitesi</h4>
-                    <p class="mb-1"><strong>Fakülte:</strong> Bilgisayar ve Bilişim Bilimleri Fakültesi</p>
-                    <p class="mb-1"><strong>Bölüm:</strong> Bilgisayar Mühendisliği (1. Sınıf)</p>
-                    <p class="mb-0"><strong>Dönem:</strong> 2025 - Günümüz</p>
-                </article>
-
                 <article class="card p-4 shadow-sm border-0 bg-white">
-                    <h4 class="text-secondary">Elazığ Kovancılar Anadolu Lisesi</h4>
-                    <p class="mb-1"><strong>Tür:</strong> Anadolu Lisesi</p>
-                    <p class="mb-0"><strong>Durum:</strong> Mezun</p>
+                    <h3 class="border-bottom pb-2 mb-3 text-primary">Eğitim Bilgileri</h3>
+                    <p class="fs-5"><strong>Üniversite:</strong> Sakarya Üniversitesi (1. Sınıf)</p>
+                    <p class="fs-5"><strong>Bölüm:</strong> Bilgisayar Mühendisliği</p>
                 </article>
             </div>
         </section>
 
         <section class="row mb-5">
-            <div class="col-md-12">
-                <h3 class="border-bottom pb-2 mb-3">Başarılar ve Yetenekler</h3>
-                <article class="card p-4 shadow-sm border-0 bg-white mb-3">
-                    <h4 class="text-success">Burs ve Destek Programları</h4>
-                    <p class="mb-0">Türk Eğitim Vakfı (TEV) Eğitim Bursiyeri</p>
+            <div class="col-md-6">
+                <article class="card p-4 shadow-sm border-0 bg-white h-100">
+                    <h4 class="text-success border-bottom pb-2">Burs ve Destek</h4>
+                    <p>Türk Eğitim Vakfı (TEV) Eğitim Bursiyeri</p>
                 </article>
-                <article class="card p-4 shadow-sm border-0 bg-white">
-                    <h4 class="text-info">Teknik Yetkinlikler</h4>
+            </div>
+            <div class="col-md-6">
+                <article class="card p-4 shadow-sm border-0 bg-white h-100">
+                    <h4 class="text-info border-bottom pb-2">Teknik Yetkinlikler</h4>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Programlama Dilleri:</strong> C++, Java, C#, PHP</li>
-                        <li class="list-group-item"><strong>Web Teknolojileri:</strong> HTML5, CSS3, JavaScript, Bootstrap</li>
+                        <li class="list-group-item"><strong>Programlama:</strong> C++, C#, Java, PHP</li>
+                        <li class="list-group-item"><strong>Web:</strong> HTML5, CSS3, Bootstrap</li>
                     </ul>
                 </article>
             </div>
