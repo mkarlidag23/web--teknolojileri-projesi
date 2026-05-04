@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">Proje Ödevi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menüyü aç">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -24,6 +24,7 @@
                     <li class="nav-item"><a class="nav-link" href="takimimiz.html">Takımımız</a></li>
                     <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
                     <li class="nav-item"><a class="nav-link active" href="iletisim.html">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-2 mt-2 mt-lg-0" href="login.html">Giriş Yap</a></li>
                 </ul>
             </div>
         </div>
@@ -33,22 +34,28 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow border-0 p-4 mb-5">
-                    <h2 class="text-center text-primary mb-4">İletişim Formu</h2>
-                    
-                    <form id="iletisimFormu" action="islem.php" method="POST">
-                        
+                    <h2 class="text-center text-primary mb-2">İletişim Formu</h2>
+                    <p class="text-center text-muted small mb-4">Doğrulamalar hem <strong>Native JavaScript</strong> hem <strong>Vue.js</strong> ile ayrı düğmelerde yapılır; HTML5 <code>required</code> kullanılmaz.</p>
+
+                    <form id="iletisimFormu" action="islem.php" method="POST" novalidate>
+
                         <div class="mb-3">
-                            <label class="form-label">Ad Soyad</label>
-                            <input type="text" class="form-control" id="ad" name="ad" v-model="form.ad">
+                            <label class="form-label" for="ad">Ad Soyad</label>
+                            <input type="text" class="form-control" id="ad" name="ad" autocomplete="name" v-model="form.ad">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">E-posta</label>
-                            <input type="email" class="form-control" id="email" name="email" v-model="form.email">
+                            <label class="form-label" for="email">E-posta</label>
+                            <input type="text" class="form-control" id="email" name="email" autocomplete="email" v-model="form.email">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Konu Seçiniz</label>
+                            <label class="form-label" for="telefon">Telefon (yalnızca rakam)</label>
+                            <input type="text" class="form-control" id="telefon" name="telefon" inputmode="numeric" autocomplete="tel" v-model="form.telefon" placeholder="Örn: 5321234567">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="konu">Konu Seçiniz</label>
                             <select class="form-select" id="konu" name="konu" v-model="form.konu">
                                 <option value="">Seçiniz...</option>
                                 <option value="Web Tasarım Projesi">Web Tasarım Projesi</option>
@@ -58,7 +65,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label d-block">Cinsiyet</label>
+                            <span class="form-label d-block">Cinsiyet</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="cinsiyet" id="erkek" value="Erkek" v-model="form.cinsiyet">
                                 <label class="form-check-label" for="erkek">Erkek</label>
@@ -70,12 +77,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Mesajınız</label>
+                            <label class="form-label" for="mesaj">Mesajınız</label>
                             <textarea class="form-control" id="mesaj" name="mesaj" rows="3" v-model="form.mesaj"></textarea>
                         </div>
 
                         <div class="mb-4 form-check">
-                            <input type="checkbox" class="form-check-input" id="onay" name="onay" v-model="form.onay">
+                            <input type="checkbox" class="form-check-input" id="onay" name="onay" value="Evet" v-model="form.onay">
                             <label class="form-check-label" for="onay">Bilgilerimin doğruluğunu onaylıyorum.</label>
                         </div>
 
@@ -83,8 +90,8 @@
                         <div v-if="vueHata" class="alert alert-warning" role="alert">{{ vueHata }}</div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button type="button" class="btn btn-primary" onclick="nativeKontrol()">Native JS ile Kontrol</button>
-                            <button type="button" class="btn btn-success" @click="vueKontrol()">Vue.js ile Kontrol</button>
+                            <button type="button" class="btn btn-primary" id="btnNative">Native JS ile Kontrol</button>
+                            <button type="button" class="btn btn-success" @click="vueKontrol">Vue.js ile Kontrol</button>
                         </div>
                     </form>
                 </div>
@@ -92,52 +99,102 @@
         </div>
     </main>
 
-    <script>
-        function nativeKontrol() {
-            let ad = document.getElementById('ad').value;
-            let email = document.getElementById('email').value;
-            let hataKutusu = document.getElementById('hataMesaji');
-            let emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0 small">&copy; 2026 Muhammet Şahin Karlıdağ</p>
+    </footer>
 
-            if (ad.trim() === "") {
-                hataKutusu.innerHTML = "Lütfen adınızı giriniz! (Native JS)";
+    <script>
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const TELEFON_RE = /^[0-9]+$/;
+        const MIN_TEL = 10;
+
+        function nativeKontrol() {
+            const ad = document.getElementById('ad').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefon = document.getElementById('telefon').value.trim();
+            const konu = document.getElementById('konu').value;
+            const mesaj = document.getElementById('mesaj').value.trim();
+            const onay = document.getElementById('onay').checked;
+            const cinsiyetErkek = document.getElementById('erkek').checked;
+            const cinsiyetKadin = document.getElementById('kadin').checked;
+
+            const hataKutusu = document.getElementById('hataMesaji');
+            const goster = (msg) => {
+                hataKutusu.textContent = msg + ' (Native JS)';
                 hataKutusu.classList.remove('d-none');
-            } else if (!emailFormat.test(email)) {
-                hataKutusu.innerHTML = "Geçerli bir e-posta adresi giriniz! (Native JS)";
-                hataKutusu.classList.remove('d-none');
-            } else {
-                hataKutusu.classList.add('d-none');
-                document.getElementById('iletisimFormu').submit();
-            }
+            };
+
+            hataKutusu.classList.add('d-none');
+
+            if (!ad) return goster('Ad soyad boş olamaz.');
+            if (!EMAIL_RE.test(email)) return goster('Geçerli bir e-posta giriniz.');
+            if (!TELEFON_RE.test(telefon)) return goster('Telefon yalnızca rakamlardan oluşmalıdır.');
+            if (telefon.length < MIN_TEL) return goster('Telefon en az ' + MIN_TEL + ' rakam olmalıdır.');
+            if (!konu) return goster('Lütfen bir konu seçiniz.');
+            if (!cinsiyetErkek && !cinsiyetKadin) return goster('Cinsiyet seçiniz.');
+            if (!mesaj) return goster('Mesaj alanı boş olamaz.');
+            if (!onay) return goster('Onay kutusunu işaretlemelisiniz.');
+
+            document.getElementById('iletisimFormu').submit();
         }
+
+        document.getElementById('btnNative').addEventListener('click', nativeKontrol);
     </script>
 
     <script>
+        const EMAIL_RE_V = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const TELEFON_RE_V = /^[0-9]+$/;
+        const MIN_TEL_V = 10;
+
         const app = Vue.createApp({
             data() {
                 return {
-                    form: { ad: '', email: '', konu: '', cinsiyet: '', mesaj: '', onay: false },
+                    form: { ad: '', email: '', telefon: '', konu: '', cinsiyet: '', mesaj: '', onay: false },
                     vueHata: ''
-                }
+                };
             },
             methods: {
                 vueKontrol() {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!this.form.ad) {
-                        this.vueHata = 'Vue Kontrolü: İsim alanı boş bırakılamaz!';
-                    } else if (!emailRegex.test(this.form.email)) {
-                        this.vueHata = 'Vue Kontrolü: E-posta formatı hatalı!';
-                    } else if (!this.form.onay) {
-                        this.vueHata = 'Vue Kontrolü: Lütfen onay kutusunu işaretleyin!';
-                    } else {
-                        this.vueHata = '';
-                        document.getElementById('iletisimFormu').submit();
+                    const f = this.form;
+                    if (!f.ad || !f.ad.trim()) {
+                        this.vueHata = 'Vue: Ad soyad boş olamaz.';
+                        return;
                     }
+                    if (!EMAIL_RE_V.test(f.email.trim())) {
+                        this.vueHata = 'Vue: E-posta formatı geçersiz.';
+                        return;
+                    }
+                    if (!TELEFON_RE_V.test(f.telefon.trim())) {
+                        this.vueHata = 'Vue: Telefon yalnızca rakam içermelidir.';
+                        return;
+                    }
+                    if (f.telefon.trim().length < MIN_TEL_V) {
+                        this.vueHata = 'Vue: Telefon en az ' + MIN_TEL_V + ' rakam olmalıdır.';
+                        return;
+                    }
+                    if (!f.konu) {
+                        this.vueHata = 'Vue: Konu seçiniz.';
+                        return;
+                    }
+                    if (!f.cinsiyet) {
+                        this.vueHata = 'Vue: Cinsiyet seçiniz.';
+                        return;
+                    }
+                    if (!f.mesaj || !f.mesaj.trim()) {
+                        this.vueHata = 'Vue: Mesaj boş olamaz.';
+                        return;
+                    }
+                    if (!f.onay) {
+                        this.vueHata = 'Vue: Onay kutusunu işaretleyin.';
+                        return;
+                    }
+                    this.vueHata = '';
+                    document.getElementById('iletisimFormu').submit();
                 }
             }
         });
         app.mount('#app');
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

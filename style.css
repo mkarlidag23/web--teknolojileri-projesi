@@ -40,3 +40,73 @@ body {
 
 .prev-btn { left: 10px; }
 .next-btn { right: 10px; }
+
+/* --- Hakkında: video alanı --- */
+.about-video {
+    max-width: 800px;
+}
+
+/* --- Takımımız (Galatasaray) --- */
+.gs-yellow { color: #FDB912; }
+.gs-red { color: #A32638; }
+.bg-gs-gradient { background: linear-gradient(45deg, #A32638, #FDB912); }
+.hero-section { padding: 60px 0; border-radius: 15px; margin-bottom: 30px; }
+
+.sehrim-hero-carousel .carousel-item a {
+    display: block;
+    outline: none;
+}
+
+.sehrim-hero-carousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 1rem 1.25rem;
+    bottom: 12%;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sehrim-hero-carousel .carousel-caption h2 {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+.sehrim-hero-carousel .carousel-caption small {
+    opacity: 0.9;
+}
+
+/* --- Login sayfası --- */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+/* Navbar altında giriş alanı (tam ekran taşmasın) */
+.login-page.with-navbar {
+    min-height: calc(100vh - 56px);
+}
+
+.login-card {
+    max-width: 420px;
+    width: 100%;
+}
+
+/* Masaüstü ve büyük ekranlar için ayar */
+#elazigSlider .carousel-item img {
+    height: 500px; /* Resimlerin yüksekliğini 500px'e sabitledik. İsteğe göre 400px veya 600px yapabilirsin. */
+    object-fit: cover; /* Resmi bozmadan, alanı dolduracak şekilde kırpar , bu sayede görüntü bozulmamış oluyor. */
+    width: 100%; /* Genişlik*/
+}
+
+/* Mobil (telefon) ekranları için ayar - Duyarlılık (Responsiveness) */
+@media (max-width: 768px) {
+    #elazigSlider .carousel-item img {
+        height: 250px; /* Telefondan bakınca resimler çok uzun görünmesin diye yüksekliği azalttım. */
+    }
+}
