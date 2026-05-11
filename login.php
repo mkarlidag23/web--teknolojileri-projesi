@@ -40,7 +40,7 @@ $ogrNo = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ozgecmis.html">Özgeçmiş</a></li>
                     <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
                     <li class="nav-item"><a class="nav-link" href="takimimiz.html">Takımımız</a></li>
                     <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>

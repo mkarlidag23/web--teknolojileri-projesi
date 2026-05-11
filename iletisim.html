@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ozgecmis.html">Özgeçmiş</a></li>
                     <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
                     <li class="nav-item"><a class="nav-link" href="takimimiz.html">Takımımız</a></li>
                     <li class="nav-item"><a class="nav-link" href="ilgi-alanlarim.html">İlgi Alanlarım</a></li>
@@ -90,7 +90,7 @@
                         <div v-if="vueHata" class="alert alert-warning" role="alert">{{ vueHata }}</div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button type="button" class="btn btn-primary" id="btnNative">Native JS ile Kontrol</button>
+                            <button type="button" class="btn btn-primary" id="btnNative" onclick="nativeKontrol()">Native JS ile Kontrol</button>
                             <button type="button" class="btn btn-success" @click="vueKontrol">Vue.js ile Kontrol</button>
                         </div>
                     </form>
@@ -100,13 +100,13 @@
     </main>
 
     <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-0 small">&copy; 2026 Muhammet Şahin Karlıdağ</p>
+        <p class="mb-0 small">&copy; 2026 - Muhammet Şahin Karlıdağ</p>
     </footer>
 
     <script>
         const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const TELEFON_RE = /^[0-9]+$/;
-        const MIN_TEL = 10;
+        const TEL = 10;
 
         function nativeKontrol() {
             const ad = document.getElementById('ad').value.trim();
@@ -128,8 +128,8 @@
 
             if (!ad) return goster('Ad soyad boş olamaz.');
             if (!EMAIL_RE.test(email)) return goster('Geçerli bir e-posta giriniz.');
-            if (!TELEFON_RE.test(telefon)) return goster('Telefon yalnızca rakamlardan oluşmalıdır.');
-            if (telefon.length < MIN_TEL) return goster('Telefon en az ' + MIN_TEL + ' rakam olmalıdır.');
+            if (!TELEFON_RE.test(telefon)) return goster('Telefon numarası yalnızca rakamlardan oluşmalıdır.');
+            if (telefon.length != TEL) return goster('Telefon numarası ' + TEL + ' rakam olmalıdır.');
             if (!konu) return goster('Lütfen bir konu seçiniz.');
             if (!cinsiyetErkek && !cinsiyetKadin) return goster('Cinsiyet seçiniz.');
             if (!mesaj) return goster('Mesaj alanı boş olamaz.');
@@ -144,7 +144,7 @@
     <script>
         const EMAIL_RE_V = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const TELEFON_RE_V = /^[0-9]+$/;
-        const MIN_TEL_V = 10;
+        const TEL_V = 10;
 
         const app = Vue.createApp({
             data() {
@@ -165,11 +165,11 @@
                         return;
                     }
                     if (!TELEFON_RE_V.test(f.telefon.trim())) {
-                        this.vueHata = 'Vue: Telefon yalnızca rakam içermelidir.';
+                        this.vueHata = 'Vue: Telefon numarası yalnızca rakam içermelidir.';
                         return;
                     }
-                    if (f.telefon.trim().length < MIN_TEL_V) {
-                        this.vueHata = 'Vue: Telefon en az ' + MIN_TEL_V + ' rakam olmalıdır.';
+                    if (f.telefon.trim().length != TEL_V) {
+                        this.vueHata = 'Vue: Telefon numarası ' + TEL_V + ' rakam olmalıdır.';
                         return;
                     }
                     if (!f.konu) {
