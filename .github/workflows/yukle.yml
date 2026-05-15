@@ -1,0 +1,26 @@
+name: 🚀 Siteyi muhammetsahinkarlidag.infinityfree.me'ye yükle
+
+on:
+  workflow_dispatch: # Uncomment below to deploy on push instead
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: 🎉 Siteyi muhammetsahinkarlidag.infinityfree.me'ye yükle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 En son sürüm actions kullan
+        uses: actions/checkout@v4
+
+      - name: 📂 Dosyaları yükle
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          retries: 3
+          retryDelay: 10
